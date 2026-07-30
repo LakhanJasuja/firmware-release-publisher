@@ -1,0 +1,20 @@
+# Python verifier caches
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Node artifacts (the Dockerfile runs `npm install` at build time; nothing ships)
+node_modules/
+package-lock.json
+
+# DuckDB runtime artifacts (created by the publisher at run time)
+*.duckdb
+*.duckdb.wal
+
+# Local verifier logs / venv used only for local reward proofs
+/logs/
+.venv/
+
+# OS noise
+.DS_Store
+*.log

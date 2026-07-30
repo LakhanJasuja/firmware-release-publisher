@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * release-publisher.mjs — firmware release publisher.
+ * release-publisher.mjs - firmware release publisher.
  *
  * Pipeline (run via `npm run report`):
  *   1. Load fixtures/build_manifest.csv into releases.duckdb.
@@ -209,7 +209,7 @@ async function main() {
       const requestToken = `token-${bundleId}`;
       const descriptor = canonicalDescriptor(bundle);
 
-      // Idempotency: a receipt stored by a previous run is replayed as-is —
+      // Idempotency: a receipt stored by a previous run is replayed as-is -
       // no re-signing, no re-submission.
       const stored = await dbAll(
         conn,
