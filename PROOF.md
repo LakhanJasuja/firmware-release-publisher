@@ -31,7 +31,8 @@ finch build -t fw-publisher-task:proof -f Dockerfile .
   binary reward to `/logs/verifier/reward.txt`.
 - The reference solution `solution/` is mounted at `/solution`;
   `solution/publish.sh` installs the reference publisher into `/app/publisher/`
-  and runs it, exactly as an oracle run would.
+  (install only). Starting the gateway, running `npm run report`, and grading is
+  the verifier's job (`tests/test.sh`), not the installer's.
 
 ## 1. Proof - empty candidate slot -> reward 0
 

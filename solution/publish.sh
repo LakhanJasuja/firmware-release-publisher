@@ -7,9 +7,10 @@
 #   * With this script run first, the reference publisher is installed into the
 #     candidate slot and the same tests/test.sh must score reward 1.
 #
-# This script installs the authored reference publisher into /app/publisher/ and
-# then runs it once so the operator can eyeball the deterministic output. The
-# verifier (tests/test.sh) re-runs `npm run report` itself and grades the result.
+# This script ONLY installs the authored reference publisher into /app/publisher/.
+# It does NOT run `npm run report`: the distribution gateway is not running at
+# install time, and starting the gateway + running the report + grading is the
+# responsibility of the verifier (tests/test.sh).
 set -euo pipefail
 
 # Resolve the app root: this file lives at <root>/solution/publish.sh in the
@@ -30,7 +31,4 @@ TARGET="${APP_ROOT}/publisher/release-publisher.mjs"
 echo "release-publisher(solution): installing reference publisher -> ${TARGET}"
 mkdir -p "${APP_ROOT}/publisher"
 cp "${REFERENCE_PUBLISHER}" "${TARGET}"
-
-echo "release-publisher(solution): running 'npm run report'"
-cd "${APP_ROOT}"
-npm run report
+echo "release-publisher(solution): install complete; the verifier runs 'npm run report'"

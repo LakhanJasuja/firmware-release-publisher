@@ -118,6 +118,5 @@ Both were demonstrated in a clean run before submission.
 ## 9. Originality
 
 The domain (firmware release publishing), all identifiers, schemas, routes,
-ports, error codes, and sample data were invented for this task; see
-`_originality_note.md`. No reference solution logic was copied from any source
-task.
+ports, error codes, and sample data were invented for this task. No reference
+solution logic was copied from any source task.

@@ -1,6 +1,6 @@
 """Verifier tests for the Firmware Release Publisher task.
 
-Each test maps to a functional_criteria[] entry in scaffold_plan.yaml. The suite
+Each test maps to a functional criterion for this task. The suite
 runs the candidate publisher via ``npm run report`` against the provided Express
 distribution gateway (started in the background by tests/test.sh), then:
 
