@@ -106,14 +106,47 @@ The same suite runs for the reference oracle and for the candidate.
 
 ## 8. Required grading proofs
 
-- **Empty candidate slot -> reward 0.** With `environment/publisher/` empty,
-  `npm run report` fails (no publisher), the golden diff fails, and
-  `tests/test.sh` writes `0`.
-- **Reference solution -> reward 1.** After `solution/publish.sh` installs
-  `solution/release-publisher.mjs` into `publisher/` and runs it, the suite
-  passes and `tests/test.sh` writes `1`.
+Both proofs were run in a freshly built container (`docker build`-equivalent)
+from `environment/Dockerfile`.
 
-Both were demonstrated in a clean run before submission.
+**Build**
+
+```
+cd environment && docker build -t task-img .
+```
+
+**Proof A - empty run scores 0** (no solution installed):
+
+```
+docker run --rm -v "$PWD/../tests":/tests:ro task-img \
+  bash -lc 'bash /tests/test.sh; cat /logs/verifier/reward.txt'
+```
+Result:
+```
+4 failed, 2 passed
+pytest exit code: 1
+reward=0
+```
+(The publisher slot is empty, so `npm run report` fails and the four
+publisher-dependent tests fail; the two gateway signature-path tests still pass,
+which is why grading is sensitive to the solution rather than tautological.)
+
+**Proof B - reference solution scores 1**:
+
+```
+docker run --rm -v "$PWD/../tests":/tests:ro -v "$PWD/../solution":/solution:ro \
+  task-img bash -lc 'bash /solution/publish.sh && bash /tests/test.sh; cat /logs/verifier/reward.txt'
+```
+Result:
+```
+6 passed
+pytest exit code: 0
+reward=1
+```
+
+`solution/publish.sh` is install-only (it copies the reference publisher into
+`publisher/` and exits 0); starting the gateway and running `npm run report` is
+the grader's job in `tests/test.sh`.
 
 ## 9. Originality
 
