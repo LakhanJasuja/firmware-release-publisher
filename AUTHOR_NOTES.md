@@ -30,7 +30,7 @@ publisher signing with the **revoked** key; the gateway is correct and bug-free.
 | Instruction | `instruction.md` | Candidate-facing brief; resolves both open questions. |
 | Environment | `environment/` | Dockerfile (builds keypairs + deps), fixtures, golden report, and the provided Express `distribution-gateway/`. Candidate slot `publisher/` ships **empty**. |
 | Tests | `tests/test.sh`, `tests/test_outputs.py` | Verifier: resets state, starts the gateway, runs the report, grades binary 0/1. |
-| Solution | `solution/publish.sh`, `solution/release-publisher.mjs` | Reference oracle: installs the publisher into the candidate slot and runs it. |
+| Solution | `solution/publish.sh`, `solution/release-publisher.mjs` | Reference oracle: `publish.sh` installs the reference publisher into the candidate slot (install-only); the grader runs it. |
 | Author notes | `AUTHOR_NOTES.md` | This file. |
 
 ## 3. Environment design
